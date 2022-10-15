@@ -286,6 +286,36 @@ fi
 )
 
 #------------------------------------------------------------------------------------------------------------------------------------------
+
+## sleikang/EmbyChineseNameSynchronous
+
+sleikang_EmbyChineseNameSynchronous_file=sleikang_EmbyChineseNameSynchronous_version
+
+if [ ! -f ${version_dir}/${sleikang_EmbyChineseNameSynchronous_file} ]; then
+    touch ${version_dir}/${sleikang_EmbyChineseNameSynchronous_file}
+    echo "0.0.0" > ${version_dir}/${sleikang_EmbyChineseNameSynchronous_file}
+fi
+
+sleikang_EmbyChineseNameSynchronous_version_new=$(wget --no-check-certificate -qO- https://api.github.com/repos/sleikang/EmbyChineseNameSynchronous | grep 'pushed_at' | cut -d\" -f4)
+sleikang_EmbyChineseNameSynchronous_version_old=$(cat $version_dir/${sleikang_EmbyChineseNameSynchronous_file} | head -n1)
+
+if [ "${sleikang_EmbyChineseNameSynchronous_version_new}" != "${sleikang_EmbyChineseNameSynchronous_version_old}" ]; then
+    if [ -f ${version_dir_old}/${sleikang_EmbyChineseNameSynchronous_file} ]; then
+        rm -rf ${version_dir_old}/${sleikang_EmbyChineseNameSynchronous_file}
+    fi
+    cp ${version_dir}/${sleikang_EmbyChineseNameSynchronous_file} ${version_dir_old}/${sleikang_EmbyChineseNameSynchronous_file}
+    echo "${sleikang_EmbyChineseNameSynchronous_version_new}" > ${version_dir}/${sleikang_EmbyChineseNameSynchronous_file}
+fi
+
+sleikang_EmbyChineseNameSynchronous_version_send=$(
+if [ "${sleikang_EmbyChineseNameSynchronous_version_new}" != "${sleikang_EmbyChineseNameSynchronous_version_old}" ]; then
+    echo "sleikang/EmbyChineseNameSynchronous代码变动 | 更新时间变动 ${sleikang_EmbyChineseNameSynchronous_version_old} --> ${sleikang_EmbyChineseNameSynchronous_version_new} "
+else
+    echo "sleikang/EmbyChineseNameSynchronous代码未变动 | 最新更新时间为 ${sleikang_EmbyChineseNameSynchronous_version_new}"
+fi
+)
+
+#------------------------------------------------------------------------------------------------------------------------------------------
 # 通知发送
 Text_Send=$(
 
@@ -308,6 +338,8 @@ echo "${linuxserver_transmission_version_send}"
 echo "${jxxghp_nas_tools_version_send}"
 
 echo "${allanpk716_ChineseSubFinder_version_send}"
+
+echo "${sleikang_EmbyChineseNameSynchronous_version_send}"
 
 )
 
