@@ -256,6 +256,36 @@ fi
 )
 
 #------------------------------------------------------------------------------------------------------------------------------------------
+
+## allanpk716/ChineseSubFinder
+
+allanpk716_ChineseSubFinder_file=allanpk716_ChineseSubFinder_version
+
+if [ ! -f ${version_dir}/${allanpk716_ChineseSubFinder_file} ]; then
+    touch ${version_dir}/${allanpk716_ChineseSubFinder_file}
+    echo "0.0.0" > ${version_dir}/${allanpk716_ChineseSubFinder_file}
+fi
+
+allanpk716_ChineseSubFinder_version_new=$(wget --no-check-certificate -qO- https://api.github.com/repos/allanpk716/ChineseSubFinder/tags | grep 'name' | cut -d\" -f4 | head -1)
+allanpk716_ChineseSubFinder_version_old=$(cat $version_dir/${allanpk716_ChineseSubFinder_file} | head -n1)
+
+if [ "${allanpk716_ChineseSubFinder_version_new}" != "${allanpk716_ChineseSubFinder_version_old}" ]; then
+    if [ -f ${version_dir_old}/${allanpk716_ChineseSubFinder_file} ]; then
+        rm -rf ${version_dir_old}/${allanpk716_ChineseSubFinder_file}
+    fi
+    cp ${version_dir}/${allanpk716_ChineseSubFinder_file} ${version_dir_old}/${allanpk716_ChineseSubFinder_file}
+    echo "${allanpk716_ChineseSubFinder_version_new}" > ${version_dir}/${allanpk716_ChineseSubFinder_file}
+fi
+
+allanpk716_ChineseSubFinder_version_send=$(
+if [ "${allanpk716_ChineseSubFinder_version_new}" != "${allanpk716_ChineseSubFinder_version_old}" ]; then
+    echo "jxxghp/nas-tools版本变动 | ${allanpk716_ChineseSubFinder_version_old} --> ${allanpk716_ChineseSubFinder_version_new} "
+else
+    echo "jxxghp/nas-tools版本未变动 | 最新版本为${allanpk716_ChineseSubFinder_version_new}"
+fi
+)
+
+#------------------------------------------------------------------------------------------------------------------------------------------
 # 通知发送
 Text_Send=$(
 
@@ -276,6 +306,8 @@ echo "${BGmi_version_send}"
 echo "${linuxserver_transmission_version_send}"
 
 echo "${jxxghp_nas_tools_version_send}"
+
+echo "${allanpk716_ChineseSubFinder_version_send}"
 
 )
 
