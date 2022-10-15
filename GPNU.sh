@@ -279,9 +279,9 @@ fi
 
 allanpk716_ChineseSubFinder_version_send=$(
 if [ "${allanpk716_ChineseSubFinder_version_new}" != "${allanpk716_ChineseSubFinder_version_old}" ]; then
-    echo "jxxghp/nas-tools版本变动 | ${allanpk716_ChineseSubFinder_version_old} --> ${allanpk716_ChineseSubFinder_version_new} "
+    echo "allanpk716/ChineseSubFinder版本变动 | ${allanpk716_ChineseSubFinder_version_old} --> ${allanpk716_ChineseSubFinder_version_new} "
 else
-    echo "jxxghp/nas-tools版本未变动 | 最新版本为${allanpk716_ChineseSubFinder_version_new}"
+    echo "allanpk716/ChineseSubFinder版本未变动 | 最新版本为${allanpk716_ChineseSubFinder_version_new}"
 fi
 )
 
