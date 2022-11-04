@@ -317,34 +317,109 @@ fi
 
 #------------------------------------------------------------------------------------------------------------------------------------------
 # 通知发送
-Text_Send=$(
+Text_Send_Update=$(
 
 date
 
 echo
 
+echo "版本发生改变"
+
+echo
+
+if [ "${mayswind_AriaNg_version_new}" != "${mayswind_AriaNg_version_old}" ]; then
 echo "${mayswind_AriaNg_version_send}"
+fi
 
+if [ "${c0re100_qBittorrent_ee_version_new}" != "${c0re100_qBittorrent_ee_version_old}" ]; then
 echo "${c0re100_qBittorrent_ee_version_send}"
+fi
 
+if [ "${userdocs_qbittorrent_nox_static_version_new}" != "${userdocs_qbittorrent_nox_static_version_old}" ]; then
 echo "${userdocs_qbittorrent_nox_static_version_send}"
+fi
 
+if [ "${icret_EasyImages2_0_version_new}" != "${icret_EasyImages2_0_version_old}" ]; then
 echo "${icret_EasyImages2_0_version_send}"
+fi
 
+if [ "${BGmi_version_new}" != "${BGmi_version_old}" ]; then
 echo "${BGmi_version_send}"
+fi
 
+if [ "${linuxserver_transmission_version_new}" != "${linuxserver_transmission_version_old}" ]; then
 echo "${linuxserver_transmission_version_send}"
+fi
 
+if [ "${jxxghp_nas_tools_version_new}" != "${jxxghp_nas_tools_version_old}" ]; then
 echo "${jxxghp_nas_tools_version_send}"
+fi
 
+if [ "${allanpk716_ChineseSubFinder_version_new}" != "${allanpk716_ChineseSubFinder_version_old}" ]; then
 echo "${allanpk716_ChineseSubFinder_version_send}"
+fi
 
+if [ "${sleikang_EmbyChineseNameSynchronous_version_new}" != "${sleikang_EmbyChineseNameSynchronous_version_old}" ]; then
 echo "${sleikang_EmbyChineseNameSynchronous_version_send}"
+fi
 
 )
 
-echo "${Text_Send}"
+Text_Send_No=$(
+
+date
+
+echo
+
+echo "版本未发生改变"
+
+echo
+
+if [ "${mayswind_AriaNg_version_new}" = "${mayswind_AriaNg_version_old}" ]; then
+echo "${mayswind_AriaNg_version_send}"
+fi
+
+if [ "${c0re100_qBittorrent_ee_version_new}" = "${c0re100_qBittorrent_ee_version_old}" ]; then
+echo "${c0re100_qBittorrent_ee_version_send}"
+fi
+
+if [ "${userdocs_qbittorrent_nox_static_version_new}" = "${userdocs_qbittorrent_nox_static_version_old}" ]; then
+echo "${userdocs_qbittorrent_nox_static_version_send}"
+fi
+
+if [ "${icret_EasyImages2_0_version_new}" = "${icret_EasyImages2_0_version_old}" ]; then
+echo "${icret_EasyImages2_0_version_send}"
+fi
+
+if [ "${BGmi_version_new}" = "${BGmi_version_old}" ]; then
+echo "${BGmi_version_send}"
+fi
+
+if [ "${linuxserver_transmission_version_new}" = "${linuxserver_transmission_version_old}" ]; then
+echo "${linuxserver_transmission_version_send}"
+fi
+
+if [ "${jxxghp_nas_tools_version_new}" = "${jxxghp_nas_tools_version_old}" ]; then
+echo "${jxxghp_nas_tools_version_send}"
+fi
+
+if [ "${allanpk716_ChineseSubFinder_version_new}" = "${allanpk716_ChineseSubFinder_version_old}" ]; then
+echo "${allanpk716_ChineseSubFinder_version_send}"
+fi
+
+if [ "${sleikang_EmbyChineseNameSynchronous_version_new}" = "${sleikang_EmbyChineseNameSynchronous_version_old}" ]; then
+echo "${sleikang_EmbyChineseNameSynchronous_version_send}"
+fi
+
+)
+
+echo "${Text_Send_Update}"
+echo "${Text_Send_No}"
 
 curl -s -k "https://api.telegram.org/bot${TGBOT_SEND_TOKEN}/sendMessage" \
 	--data-urlencode "chat_id=${TGBOT_SEND_CHATID}" \
-	--data-urlencode "text=${Text_Send}"
+	--data-urlencode "text=${Text_Send_Update}"
+
+curl -s -k "https://api.telegram.org/bot${TGBOT_SEND_TOKEN}/sendMessage" \
+	--data-urlencode "chat_id=${TGBOT_SEND_CHATID}" \
+	--data-urlencode "text=${Text_Send_No}"
