@@ -206,7 +206,7 @@ if [ ! -f ${version_dir}/${linuxserver_transmission_file} ]; then
     echo "0.0.0" > ${version_dir}/${linuxserver_transmission_file}
 fi
 
-linuxserver_transmission_version_new=$(wget --no-check-certificate -qO- https://api.github.com/repos/linuxserver/docker-transmission/tags | grep 'name' | cut -d\" -f4 | head -1)
+linuxserver_transmission_version_new=$(wget --no-check-certificate -qO- https://api.github.com/repos/linuxserver/docker-transmission | grep 'pushed_at' | cut -d\" -f4)
 linuxserver_transmission_version_old=$(cat $version_dir/${linuxserver_transmission_file} | head -n1)
 
 if [ "${linuxserver_transmission_version_new}" != "${linuxserver_transmission_version_old}" ]; then
