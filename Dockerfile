@@ -1,6 +1,7 @@
 FROM alpine:3.16
 
 ENV TZ=Asia/Shanghai \
+    PS1="\u@\h:\w \$ " \
     GPNU_CONFIG_DIR=/config
 
 RUN apk add --no-cache bash tzdata curl && \
