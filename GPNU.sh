@@ -287,6 +287,36 @@ fi
 
 #------------------------------------------------------------------------------------------------------------------------------------------
 
+## cym1102/nginxWebUI
+
+cym1102_nginxWebUI_file=cym1102_nginxWebUI_version
+
+if [ ! -f ${version_dir}/${cym1102_nginxWebUI_file} ]; then
+    touch ${version_dir}/${cym1102_nginxWebUI_file}
+    echo "0.0.0" > ${version_dir}/${cym1102_nginxWebUI_file}
+fi
+
+cym1102_nginxWebUI_version_new=$(wget --no-check-certificate -qO- https://gitee.com/api/v5/repos/cym1102/nginxWebUI/tags | grep 'name' | cut -d\" -f4)
+cym1102_nginxWebUI_version_old=$(cat $version_dir/${cym1102_nginxWebUI_file} | head -n1)
+
+if [ "${cym1102_nginxWebUI_version_new}" != "${cym1102_nginxWebUI_version_old}" ]; then
+    if [ -f ${version_dir_old}/${cym1102_nginxWebUI_file} ]; then
+        rm -rf ${version_dir_old}/${cym1102_nginxWebUI_file}
+    fi
+    cp ${version_dir}/${cym1102_nginxWebUI_file} ${version_dir_old}/${cym1102_nginxWebUI_file}
+    echo "${cym1102_nginxWebUI_version_new}" > ${version_dir}/${cym1102_nginxWebUI_file}
+fi
+
+cym1102_nginxWebUI_version_send=$(
+if [ "${cym1102_nginxWebUI_version_new}" != "${cym1102_nginxWebUI_version_old}" ]; then
+    echo "cym1102/nginxWebUI版本变动 | ${cym1102_nginxWebUI_version_old} --> ${cym1102_nginxWebUI_version_new} "
+else
+    echo "cym1102/nginxWebUI版本未变动 | 最新版本为${cym1102_nginxWebUI_version_new}"
+fi
+)
+
+#------------------------------------------------------------------------------------------------------------------------------------------
+
 ## sleikang/EmbyChineseNameSynchronous
 
 sleikang_EmbyChineseNameSynchronous_file=sleikang_EmbyChineseNameSynchronous_version
@@ -361,6 +391,10 @@ if [ "${allanpk716_ChineseSubFinder_version_new}" != "${allanpk716_ChineseSubFin
 echo "${allanpk716_ChineseSubFinder_version_send}"
 fi
 
+if [ "${cym1102_nginxWebUI_version_new}" != "${cym1102_nginxWebUI_version_old}" ]; then
+echo "${cym1102_nginxWebUI_version_send}"
+fi
+
 if [ "${sleikang_EmbyChineseNameSynchronous_version_new}" != "${sleikang_EmbyChineseNameSynchronous_version_old}" ]; then
 echo "${sleikang_EmbyChineseNameSynchronous_version_send}"
 fi
@@ -408,6 +442,10 @@ fi
 
 if [ "${allanpk716_ChineseSubFinder_version_new}" = "${allanpk716_ChineseSubFinder_version_old}" ]; then
 echo "${allanpk716_ChineseSubFinder_version_send}"
+fi
+
+if [ "${cym1102_nginxWebUI_version_new}" = "${cym1102_nginxWebUI_version_old}" ]; then
+echo "${cym1102_nginxWebUI_version_send}"
 fi
 
 if [ "${sleikang_EmbyChineseNameSynchronous_version_new}" = "${sleikang_EmbyChineseNameSynchronous_version_old}" ]; then
