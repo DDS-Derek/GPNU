@@ -257,31 +257,31 @@ fi
 
 #------------------------------------------------------------------------------------------------------------------------------------------
 
-## allanpk716/ChineseSubFinder
+## ChineseSubFinder/ChineseSubFinder
 
-allanpk716_ChineseSubFinder_file=allanpk716_ChineseSubFinder_version
+ChineseSubFinder_ChineseSubFinder_file=ChineseSubFinder_ChineseSubFinder_version
 
-if [ ! -f ${version_dir}/${allanpk716_ChineseSubFinder_file} ]; then
-    touch ${version_dir}/${allanpk716_ChineseSubFinder_file}
-    echo "0.0.0" > ${version_dir}/${allanpk716_ChineseSubFinder_file}
+if [ ! -f ${version_dir}/${ChineseSubFinder_ChineseSubFinder_file} ]; then
+    touch ${version_dir}/${ChineseSubFinder_ChineseSubFinder_file}
+    echo "0.0.0" > ${version_dir}/${ChineseSubFinder_ChineseSubFinder_file}
 fi
 
-allanpk716_ChineseSubFinder_version_new=$(wget --no-check-certificate -qO- https://api.github.com/repos/allanpk716/ChineseSubFinder/tags | grep 'name' | cut -d\" -f4 | head -1)
-allanpk716_ChineseSubFinder_version_old=$(cat $version_dir/${allanpk716_ChineseSubFinder_file} | head -n1)
+ChineseSubFinder_ChineseSubFinder_version_new=$(wget --no-check-certificate -qO- https://api.github.com/repos/ChineseSubFinder/ChineseSubFinder/tags | grep 'name' | cut -d\" -f4 | head -1)
+ChineseSubFinder_ChineseSubFinder_version_old=$(cat $version_dir/${ChineseSubFinder_ChineseSubFinder_file} | head -n1)
 
-if [ "${allanpk716_ChineseSubFinder_version_new}" != "${allanpk716_ChineseSubFinder_version_old}" ]; then
-    if [ -f ${version_dir_old}/${allanpk716_ChineseSubFinder_file} ]; then
-        rm -rf ${version_dir_old}/${allanpk716_ChineseSubFinder_file}
+if [ "${ChineseSubFinder_ChineseSubFinder_version_new}" != "${ChineseSubFinder_ChineseSubFinder_version_old}" ]; then
+    if [ -f ${version_dir_old}/${ChineseSubFinder_ChineseSubFinder_file} ]; then
+        rm -rf ${version_dir_old}/${ChineseSubFinder_ChineseSubFinder_file}
     fi
-    cp ${version_dir}/${allanpk716_ChineseSubFinder_file} ${version_dir_old}/${allanpk716_ChineseSubFinder_file}
-    echo "${allanpk716_ChineseSubFinder_version_new}" > ${version_dir}/${allanpk716_ChineseSubFinder_file}
+    cp ${version_dir}/${ChineseSubFinder_ChineseSubFinder_file} ${version_dir_old}/${ChineseSubFinder_ChineseSubFinder_file}
+    echo "${ChineseSubFinder_ChineseSubFinder_version_new}" > ${version_dir}/${ChineseSubFinder_ChineseSubFinder_file}
 fi
 
-allanpk716_ChineseSubFinder_version_send=$(
-if [ "${allanpk716_ChineseSubFinder_version_new}" != "${allanpk716_ChineseSubFinder_version_old}" ]; then
-    echo "allanpk716/ChineseSubFinder版本变动 | ${allanpk716_ChineseSubFinder_version_old} --> ${allanpk716_ChineseSubFinder_version_new} "
+ChineseSubFinder_ChineseSubFinder_version_send=$(
+if [ "${ChineseSubFinder_ChineseSubFinder_version_new}" != "${ChineseSubFinder_ChineseSubFinder_version_old}" ]; then
+    echo "allanpk716/ChineseSubFinder版本变动 | ${ChineseSubFinder_ChineseSubFinder_version_old} --> ${ChineseSubFinder_ChineseSubFinder_version_new} "
 else
-    echo "allanpk716/ChineseSubFinder版本未变动 | 最新版本为${allanpk716_ChineseSubFinder_version_new}"
+    echo "allanpk716/ChineseSubFinder版本未变动 | 最新版本为${ChineseSubFinder_ChineseSubFinder_version_new}"
 fi
 )
 
@@ -387,8 +387,8 @@ if [ "${jxxghp_nas_tools_version_new}" != "${jxxghp_nas_tools_version_old}" ]; t
 echo "${jxxghp_nas_tools_version_send}"
 fi
 
-if [ "${allanpk716_ChineseSubFinder_version_new}" != "${allanpk716_ChineseSubFinder_version_old}" ]; then
-echo "${allanpk716_ChineseSubFinder_version_send}"
+if [ "${ChineseSubFinder_ChineseSubFinder_version_new}" != "${allanpk716_ChineseSubFinder_version_old}" ]; then
+echo "${ChineseSubFinder_ChineseSubFinder_version_send}"
 fi
 
 if [ "${cym1102_nginxWebUI_version_new}" != "${cym1102_nginxWebUI_version_old}" ]; then
@@ -440,8 +440,8 @@ if [ "${jxxghp_nas_tools_version_new}" = "${jxxghp_nas_tools_version_old}" ]; th
 echo "${jxxghp_nas_tools_version_send}"
 fi
 
-if [ "${allanpk716_ChineseSubFinder_version_new}" = "${allanpk716_ChineseSubFinder_version_old}" ]; then
-echo "${allanpk716_ChineseSubFinder_version_send}"
+if [ "${ChineseSubFinder_ChineseSubFinder_version_new}" = "${allanpk716_ChineseSubFinder_version_old}" ]; then
+echo "${ChineseSubFinder_ChineseSubFinder_version_send}"
 fi
 
 if [ "${cym1102_nginxWebUI_version_new}" = "${cym1102_nginxWebUI_version_old}" ]; then
