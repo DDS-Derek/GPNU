@@ -346,6 +346,36 @@ fi
 )
 
 #------------------------------------------------------------------------------------------------------------------------------------------
+
+## hectorqin/reader
+
+hectorqin_reader_file=hectorqin_reader_version
+
+if [ ! -f ${version_dir}/${hectorqin_reader_file} ]; then
+    touch ${version_dir}/${hectorqin_reader_file}
+    echo "0.0.0" > ${version_dir}/${hectorqin_reader_file}
+fi
+
+hectorqin_reader_version_new=$(wget --no-check-certificate -qO- https://api.github.com/repos/hectorqin/reader/tags | grep 'name' | cut -d\" -f4 | head -1)
+hectorqin_reader_version_old=$(cat $version_dir/${hectorqin_reader_file} | head -n1)
+
+if [ "${hectorqin_reader_version_new}" != "${hectorqin_reader_version_old}" ]; then
+    if [ -f ${version_dir_old}/${hectorqin_reader_file} ]; then
+        rm -rf ${version_dir_old}/${hectorqin_reader_file}
+    fi
+    cp ${version_dir}/${hectorqin_reader_file} ${version_dir_old}/${hectorqin_reader_file}
+    echo "${hectorqin_reader_version_new}" > ${version_dir}/${hectorqin_reader_file}
+fi
+
+hectorqin_reader_version_send=$(
+if [ "${hectorqin_reader_version_new}" != "${hectorqin_reader_version_old}" ]; then
+    echo "hectorqin/reader代码变动 | 更新时间变动 ${hectorqin_reader_version_old} --> ${hectorqin_reader_version_new} "
+else
+    echo "hectorqin/reader代码未变动 | 最新更新时间为 ${hectorqin_reader_version_new}"
+fi
+)
+
+#------------------------------------------------------------------------------------------------------------------------------------------
 # 通知发送
 
 # 版本发生改变
@@ -399,6 +429,10 @@ if [ "${sleikang_EmbyChineseNameSynchronous_version_new}" != "${sleikang_EmbyChi
 echo "${sleikang_EmbyChineseNameSynchronous_version_send}"
 fi
 
+if [ "${hectorqin_reader_version_new}" != "${hectorqin_reader_version_old}" ]; then
+echo "${hectorqin_reader_version_send}"
+fi
+
 )
 
 # 版本未发生改变
@@ -450,6 +484,10 @@ fi
 
 if [ "${sleikang_EmbyChineseNameSynchronous_version_new}" = "${sleikang_EmbyChineseNameSynchronous_version_old}" ]; then
 echo "${sleikang_EmbyChineseNameSynchronous_version_send}"
+fi
+
+if [ "${hectorqin_reader_version_new}" = "${hectorqin_reader_version_old}" ]; then
+echo "${hectorqin_reader_version_send}"
 fi
 
 )
