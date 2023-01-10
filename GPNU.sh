@@ -417,7 +417,7 @@ if [ "${jxxghp_nas_tools_version_new}" != "${jxxghp_nas_tools_version_old}" ]; t
 echo "${jxxghp_nas_tools_version_send}"
 fi
 
-if [ "${ChineseSubFinder_ChineseSubFinder_version_new}" != "${allanpk716_ChineseSubFinder_version_old}" ]; then
+if [ "${ChineseSubFinder_ChineseSubFinder_version_new}" != "${ChineseSubFinder_ChineseSubFinder_version_old}" ]; then
 echo "${ChineseSubFinder_ChineseSubFinder_version_send}"
 fi
 
@@ -474,7 +474,7 @@ if [ "${jxxghp_nas_tools_version_new}" = "${jxxghp_nas_tools_version_old}" ]; th
 echo "${jxxghp_nas_tools_version_send}"
 fi
 
-if [ "${ChineseSubFinder_ChineseSubFinder_version_new}" = "${allanpk716_ChineseSubFinder_version_old}" ]; then
+if [ "${ChineseSubFinder_ChineseSubFinder_version_new}" = "${ChineseSubFinder_ChineseSubFinder_version_old}" ]; then
 echo "${ChineseSubFinder_ChineseSubFinder_version_send}"
 fi
 
