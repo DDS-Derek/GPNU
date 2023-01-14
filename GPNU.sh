@@ -369,9 +369,39 @@ fi
 
 hectorqin_reader_version_send=$(
 if [ "${hectorqin_reader_version_new}" != "${hectorqin_reader_version_old}" ]; then
-    echo "hectorqin/reader代码变动 | 更新时间变动 ${hectorqin_reader_version_old} --> ${hectorqin_reader_version_new} "
+    echo "hectorqin/reader版本变动 | 更新时间变动 ${hectorqin_reader_version_old} --> ${hectorqin_reader_version_new} "
 else
-    echo "hectorqin/reader代码未变动 | 最新更新时间为 ${hectorqin_reader_version_new}"
+    echo "hectorqin/reader版本未变动 | 最新更新时间为 ${hectorqin_reader_version_new}"
+fi
+)
+
+#------------------------------------------------------------------------------------------------------------------------------------------
+
+## filebrowser/filebrowser
+
+filebrowser_filebrowser_file=filebrowser_filebrowser_version
+
+if [ ! -f ${version_dir}/${filebrowser_filebrowser_file} ]; then
+    touch ${version_dir}/${filebrowser_filebrowser_file}
+    echo "0.0.0" > ${version_dir}/${filebrowser_filebrowser_file}
+fi
+
+filebrowser_filebrowser_version_new=$(wget --no-check-certificate -qO- https://api.github.com/repos/filebrowser/filebrowser/tags | grep 'name' | cut -d\" -f4 | head -1)
+filebrowser_filebrowser_version_old=$(cat $version_dir/${filebrowser_filebrowser_file} | head -n1)
+
+if [ "${filebrowser_filebrowser_version_new}" != "${filebrowser_filebrowser_version_old}" ]; then
+    if [ -f ${version_dir_old}/${filebrowser_filebrowser_file} ]; then
+        rm -rf ${version_dir_old}/${filebrowser_filebrowser_file}
+    fi
+    cp ${version_dir}/${filebrowser_filebrowser_file} ${version_dir_old}/${filebrowser_filebrowser_file}
+    echo "${filebrowser_filebrowser_version_new}" > ${version_dir}/${filebrowser_filebrowser_file}
+fi
+
+filebrowser_filebrowser_version_send=$(
+if [ "${filebrowser_filebrowser_version_new}" != "${filebrowser_filebrowser_version_old}" ]; then
+    echo "filebrowser/filebrowser版本变动 | 更新时间变动 ${filebrowser_filebrowser_version_old} --> ${filebrowser_filebrowser_version_new} "
+else
+    echo "filebrowser/filebrowser版本未变动 | 最新更新时间为 ${filebrowser_filebrowser_version_new}"
 fi
 )
 
@@ -433,6 +463,10 @@ if [ "${hectorqin_reader_version_new}" != "${hectorqin_reader_version_old}" ]; t
 echo "${hectorqin_reader_version_send}"
 fi
 
+if [ "${filebrowser_filebrowser_version_new}" != "${filebrowser_filebrowser_version_old}" ]; then
+echo "${filebrowser_filebrowser_version_send}"
+fi
+
 )
 
 # 版本未发生改变
@@ -488,6 +522,10 @@ fi
 
 if [ "${hectorqin_reader_version_new}" = "${hectorqin_reader_version_old}" ]; then
 echo "${hectorqin_reader_version_send}"
+fi
+
+if [ "${filebrowser_filebrowser_version_new}" = "${filebrowser_filebrowser_version_old}" ]; then
+echo "${filebrowser_filebrowser_version_send}"
 fi
 
 )
