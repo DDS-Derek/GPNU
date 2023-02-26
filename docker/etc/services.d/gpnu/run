@@ -1,0 +1,3 @@
+#!/usr/bin/with-contenv bash
+
+exec s6-setuidgid root bash /app/GPNU.v2.sh > /app/GPNU.log 2>&1
