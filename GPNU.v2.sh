@@ -72,9 +72,9 @@ while true; do
   done
   # 输出message信息，方便排查问题
   echo -e "${message}\n更新情况如上！"
-#  curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" 
-#    -d "chat_id=${TELEGRAM_CHAT_ID}" 
-#    -d "text=${message}"
+  curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" 
+    -d "chat_id=${TELEGRAM_CHAT_ID}" 
+    -d "text=${message}"
   # 等待一段时间再进行下一次轮询
   sleep $INTERVAL
 done
