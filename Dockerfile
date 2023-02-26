@@ -4,6 +4,8 @@ ENV TZ=Asia/Shanghai \
     PS1="\u@\h:\w \$ " \
     GPNU_CONFIG_DIR=/config
 
-COPY --chmod=755 . /
+RUN apk add --no-cache bash tzdata curl grep
 
-CMD [ "/GPNU.v2.sh" ]
+COPY --chmod=755 ./GPNU.v2.sh /GPNU.v2.sh
+
+CMD [ "bash", "/GPNU.v2.sh" ]
