@@ -71,7 +71,8 @@ while true; do
     fi
   done
   # 输出message信息，方便排查问题
-  echo -e "${message}\n更新情况如上！"
+  message=$(echo -e "${message}\n更新情况如上！")
+  echo -e "${message}"
   curl -s -k "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
     --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
     --data-urlencode "text=${message}"
