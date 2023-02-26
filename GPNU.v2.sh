@@ -55,7 +55,7 @@ while true; do
     new_tag=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/repos/${project}/releases/latest" | grep tag_name | cut -d\" -f4 | head -n 1)
     if [[ $new_tag != $tag ]]; then
     # 发现新的tag版本，发送通知
-    message=$(echo -e "${message}\n🎉 ${project} 有新的tag版本: $tag --> ${new_tag}！")
+    message=$(echo -e "${message}\n🎉 ${project} 有新的版本: $tag --> ${new_tag}")
     # 更新tag版本号
     projects[$project]=$new_tag
     fi
@@ -65,7 +65,7 @@ while true; do
     new_tag=$(curl -s "https://gitee.com/api/v5/repos/${project_gitee}/releases/latest" | grep tag_name | cut -d\" -f6 | head -n 1)
     if [[ $new_tag != $tag ]]; then
     # 发现新的tag版本，发送通知
-    message=$(echo -e "${message}\n🎉 ${project_gitee} 有新的tag版本: $tag --> ${new_tag}！")
+    message=$(echo -e "${message}\n🎉 ${project_gitee} 有新的版本: $tag --> ${new_tag}")
     # 更新tag版本号
     projects_gitee[$project_gitee]=$new_tag
     fi
