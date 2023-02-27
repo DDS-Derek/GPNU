@@ -3,7 +3,7 @@
 <head>
  <title>GPNU</title>
  <meta charset="UTF-8">
- <meta http-equiv="refresh" content="5">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  <style>
   body {
    font-family: Arial, sans-serif;
@@ -36,18 +36,16 @@
 <body>
  <div class="container">
   <h1>GPNU</h1>
-  <?php
-   $file = "GPNU.txt"; // 要输出内容的文件名
-   $handle = fopen($file, "r"); // 打开文件
-   if ($handle) {
-    while (($line = fgets($handle)) !== false) { // 逐行读取文件内容并输出
-     echo "<p>" . $line . "</p>";
-    }
-    fclose($handle); // 关闭文件
-   } else {
-    echo "<p>无法打开文件！</p>";
-   }
-  ?>
+  <div id="log-content"></div>
  </div>
+ <script>
+  $(document).ready(function() {
+    setInterval(function() {
+      $.get("GPNU.txt", function(data) { // 通过Ajax获取文件内容
+        $("#log-content").html(data); // 更新页面内容
+      });
+    }, 5000); // 每隔5秒钟执行一次
+  });
+ </script>
 </body>
 </html>
