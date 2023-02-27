@@ -72,6 +72,7 @@ while true; do
   done
   # 输出message信息，方便排查问题
   message=$(echo -e "${message}\n更新情况如上！")
+  echo -e "${message}" > /app/GPNU.txt 2>&1
   echo -e "${message}"
   curl -s -k "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
     --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
