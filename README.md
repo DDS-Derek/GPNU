@@ -1,8 +1,25 @@
 # GPNU
-GitHub project updates TeleGram notification script
+GitHub & Gitee project updates TeleGram notification script
 
+```bash
+docker run -d \
+    --name gpnu \
+    -v ./config:/config \
+    -e TZ=Asia/Shanghai \
+    -p 18081:80 \
+    ddsderek/gpnu:latest
 ```
-# 需要设置的系统环境变量
-# config文件的存储位置
-GPNU_CONFIG_DIR=
+
+```yaml
+version: '3.3'
+services:
+    gpnu:
+        container_name: gpnu
+        volumes:
+            - './config:/config'
+        environment:
+            - TZ=Asia/Shanghai
+        ports:
+            - '18081:80'
+        image: 'ddsderek/gpnu:latest'
 ```
