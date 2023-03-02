@@ -1,3 +1,3 @@
 #!/usr/bin/with-contenv bash
 
-exec s6-setuidgid root bash /app/GPNU.v2.sh
+exec s6-setuidgid root bash /app/run.sh
